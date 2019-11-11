@@ -1,0 +1,8 @@
+{
+  "urlRandomness": "a5-da3",
+  "hostType": "localhost",
+  "lanType": "ip",
+  "dev": true,
+  "minify": false,
+  "https": false
+}

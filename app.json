@@ -1,0 +1,37 @@
+{
+  "expo": {
+    "name": "Natours",
+    "slug": "natours-elco",
+    "privacy": "public",
+    "sdkVersion": "35.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "icon": "./assets/images/icon.png",
+      "supportsTablet": true,
+      "bundleIdentifier": "com.eliavco.natoursmob"
+    },
+    "android": {
+      "package": "com.eliavco.natoursmob"
+    },
+    "description": "This app helps manage your tours from the Natours Company: https://natours-eliav.herokuapp.com",
+    "githubUrl": "https://github.com/eliavco/natours-eliavco-mobile.git"
+  }
+}
