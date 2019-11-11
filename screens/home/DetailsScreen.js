@@ -17,9 +17,9 @@ export default class DetailsScreen extends Component {
 
     // Update STATE
     onRefreshControl() {
-        this.setState({ DATA: {}, refreshing: true });
-        console.log(JSON.stringify(this.state));
-        this.load('5c88fa8cf4afda39709c295a');
+        this.setState({ DATA: {}, refreshing: true, }, () => {
+            this.setState({ DATA: this.load(this.state.id), refreshing: false, });
+        });
     }
 
     load(id) {
@@ -31,7 +31,7 @@ export default class DetailsScreen extends Component {
 
     // RENDER
     render() {
-        if (this.state.DATA) {
+        if (!this.state.DATA == {} && this.state.DATA) {
             return (
                 <ScrollView
                     style={styles.container}
