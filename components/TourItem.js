@@ -20,7 +20,6 @@ export class TourItem extends Component {
             even: props.even,
             navigation: props.navigation,
         };
-        props.navigation.push('Details', { itemId: '5c88fa8cf4afda39709c295a' }); // TODO: Delete in prod
     }
 
     // Create Components

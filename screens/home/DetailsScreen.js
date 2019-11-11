@@ -1,10 +1,6 @@
 import * as WebBrowser from 'expo-web-browser';
 import React, { Component } from 'react';
-import {
-    StyleSheet,
-    ActivityIndicator,
-    View,
-} from 'react-native';
+import { StyleSheet, ActivityIndicator, ScrollView, View, RefreshControl, } from 'react-native';
 import api from '../../data/api';
 import Colors from '../../constants/Colors';
 import { TourPage } from '../../components/TourPage';
@@ -15,28 +11,45 @@ export default class DetailsScreen extends Component {
         this.state = {
             id: props.navigation.getParam('itemId', 'ALT'),
             DATA: this.load(props.navigation.getParam('itemId', 'ALT')),
+            refreshing: false,
         };
     }
 
     // Update STATE
+    onRefreshControl() {
+        this.setState({ DATA: {}, refreshing: true });
+        console.log(JSON.stringify(this.state));
+        this.load('5c88fa8cf4afda39709c295a');
+    }
+
     load(id) {
         api.getTour(id, data => {
             this.setState({ DATA: data });
+            this.setState({ refreshing: false });
         });
     }
-    
+
     // RENDER
     render() {
         if (this.state.DATA) {
             return (
-                <View style={styles.container}>
+                <ScrollView
+                    style={styles.container}
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={this.state.refreshing}
+                            onRefresh={this.onRefreshControl.bind(this)}
+                            title="fetching..."
+                        />
+                    }
+                >
                     <TourPage
                         id={this.state.id}
                         DATA={this.state.DATA}
                         navigation={this.props.navigation}
                         error={this.state.DATA.error}
                     />
-                </View>
+                </ScrollView>
             );
         } else {
             return (
