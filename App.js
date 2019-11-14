@@ -5,6 +5,9 @@ import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useKeepAwake } from 'expo-keep-awake';
+import { Audio } from 'expo-av';
+
+const soundObject = new Audio.Sound();
 
 import AppNavigator from './navigation/AppNavigator';
 
@@ -12,7 +15,9 @@ export default function App(props) {
     const [isLoadingComplete, setLoadingComplete] = useState(false);
 
     if (!isLoadingComplete && !props.skipLoadingScreen) {
-        useKeepAwake(); // TODO: Delete this in prod
+        if (__DEV__) {
+            useKeepAwake();
+        }
         return (
             <AppLoading
                 startAsync={loadResourcesAsync}
@@ -21,7 +26,10 @@ export default function App(props) {
             />
         );
     } else {
-        useKeepAwake(); // TODO: Delete this in prod
+        if (__DEV__) {
+            useKeepAwake();
+        }
+        playWelcomeSound();
         return (
             <View style={styles.container}>
                 {/* <StatusBar hidden ></StatusBar> */}
@@ -48,6 +56,7 @@ async function loadResourcesAsync() {
             'lato-light': require('./assets/fonts/Lato-Light.ttf'),
             'lato-light-italic': require('./assets/fonts/Lato-LightItalic.ttf'),
         }),
+        soundObject.loadAsync(require('./assets/sounds/hello.mp3')),
     ]);
 }
 
@@ -59,6 +68,17 @@ function handleLoadingError(error) {
 
 function handleFinishLoading(setLoadingComplete) {
     setLoadingComplete(true);
+}
+
+async function playWelcomeSound() {
+    if (!__DEV__) {
+        try {
+            await soundObject.playAsync();
+            // Your sound is playing!
+        } catch (error) {
+            // An error occurred!
+        }
+    }
 }
 
 const styles = StyleSheet.create({

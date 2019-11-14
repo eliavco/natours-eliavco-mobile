@@ -8,6 +8,8 @@ import Layout from '../constants/Layout';
 import Info from '../constants/Info';
 import { NatText } from './StyledText';
 
+import { TourQuickFacts } from './tourPageComponents/QuickFacts';
+
 export class TourDetails extends Component {
     constructor(props) {
         super();
@@ -53,6 +55,7 @@ export class TourDetails extends Component {
                 <View style={styles.item}>
                     {/* QUICK FACTS ELEMENT */}
                     <NatText>QUICK FACTS</NatText>
+                    <TourQuickFacts id={ this.state.id} tour={ this.state.tour } navigation={ this.state.navigation } />
 
                     {/* DESCRIPTION ELEMENT */}
                     <NatText>DESCRIPTION</NatText>

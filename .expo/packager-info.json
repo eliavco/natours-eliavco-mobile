@@ -1,10 +1,10 @@
 {
-  "expoServerNgrokUrl": "https://a5-da3.eliav-co.natours-elco.exp.direct",
-  "packagerNgrokUrl": "https://packager.a5-da3.eliav-co.natours-elco.exp.direct",
-  "ngrokPid": 15956,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 11436,
+  "packagerPid": 14668,
   "devToolsPort": 19002,
   "webpackServerPort": null
 }

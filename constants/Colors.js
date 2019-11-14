@@ -13,7 +13,14 @@ export default {
     warningText: '#666804',
     noticeBackground: tintColor,
     noticeText: '#fff',
-    white: '#fff',
+    white: '#ffffff', // #fff
     richBlack: '#011627',
     gray: 'rgba(96,100,109, 1)',
+    pallete: [
+        '#05668d',
+        '#028090',
+        '#00a896',
+        '#02C39A',
+        '#F0F3BD',
+    ],
 };
