@@ -31,7 +31,7 @@ export class TourMap extends Component {
                        };
                        return latlng;
                    }),
-                   false // not animated
+                   false // not animated //TODO: fix
                );
            }
 
