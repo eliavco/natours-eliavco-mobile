@@ -21,7 +21,9 @@ export default class BrowseScreen extends Component {
             DATA: this.load(),
             refreshing: false,
         };
-        props.navigation.push('Details', { itemId: '5c88fa8cf4afda39709c295a' }); // TODO: Delete in prod
+        if (__DEV__) {
+            props.navigation.push('Details', { itemId: '5c88fa8cf4afda39709c295a' });
+        }
     }
 
     // Update STATE
