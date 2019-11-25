@@ -25,7 +25,6 @@ export class TourReviews extends Component {
 
     // Create components
     createReviewElement(review, i) {
-        console.log(review);
         return (
             <View
                 key={i}
