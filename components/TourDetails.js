@@ -9,6 +9,12 @@ import Info from '../constants/Info';
 import { NatText } from './StyledText';
 
 import { TourQuickFacts } from './tourPageComponents/QuickFacts';
+import { TourDescription } from './tourPageComponents/Description';
+import { TourGallery } from './tourPageComponents/Gallery';
+import { TourGuides } from './tourPageComponents/Guides';
+import { TourMap } from './tourPageComponents/Map';
+import { TourReviews } from './tourPageComponents/Reviews';
+import { TourCTA } from './tourPageComponents/CTA';
 
 export class TourDetails extends Component {
     constructor(props) {
@@ -52,28 +58,28 @@ export class TourDetails extends Component {
         return (
             <ScrollView>
                 <View>{this.createHero()}</View>
-                <View style={styles.item}>
+                <View>
+                {/* <View style={styles.item}> */}
                     {/* QUICK FACTS ELEMENT */}
-                    <NatText>QUICK FACTS</NatText>
-                    <TourQuickFacts id={ this.state.id} tour={ this.state.tour } navigation={ this.state.navigation } />
+                    <TourQuickFacts tour={ this.state.tour } />
 
                     {/* DESCRIPTION ELEMENT */}
-                    <NatText>DESCRIPTION</NatText>
+                    <TourDescription tour={ this.state.tour } />
 
                     {/* GALLERY ELEMENT */}
-                    <NatText>GALLERY</NatText>
+                    <TourGallery tour={ this.state.tour } />
 
                     {/* GUIDES ELEMENT */}
-                    <NatText>GUIDES</NatText>
+                    <TourGuides tour={ this.state.tour } />
 
                     {/* MAP ELEMENT */}
-                    <NatText>MAP</NatText>
+                    <TourMap tour={ this.state.tour } />
 
                     {/* REVIEWS ELEMENT */}
-                    <NatText>REVIEWS</NatText>
+                    <TourReviews tour={ this.state.tour } />
 
                     {/* CTA ELEMENT */}
-                    <NatText>CTA</NatText>
+                    <TourCTA tour={ this.state.tour } navigation={ this.state.navigation } />
                 </View>
             </ScrollView>
         );

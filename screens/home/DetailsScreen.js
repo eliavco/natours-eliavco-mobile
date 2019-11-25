@@ -31,7 +31,7 @@ export default class DetailsScreen extends Component {
 
     // RENDER
     render() {
-        if (!this.state.DATA == {} && this.state.DATA) {
+        if (!(this.state.DATA == {}) && this.state.DATA) {
             return (
                 <ScrollView
                     style={styles.container}

@@ -18,15 +18,15 @@ export class TourQuickFacts extends Component {
             `${Colors.pallete[1]}88`,
             `${Colors.pallete[2]}88`,
             `${Colors.pallete[3]}88`,
-            `${Colors.pallete[4]}88`,
+            `${Colors.pallete[4]}`,
         ];
         this.state = {
-            days: props.days
+            tour: props.tour
         };
     }
 
     // Create components
-    createFactElement(icon, ) {
+    createFactElement(icon, text) {
         const index = this.colorIndex % this.colors.length;
         const color = this.colors[index];
         this.colorIndex++;
@@ -39,7 +39,7 @@ export class TourQuickFacts extends Component {
                         style={styles.icon}
                     />
                     <NatText style={styles.fact}>
-                        {this.state.days} Days
+                        {text}
                     </NatText>
                 </View>
             </TouchableOpacity>
@@ -49,27 +49,51 @@ export class TourQuickFacts extends Component {
     // RENDER
     render() {
         return (
-            <View style={{...this.props.style, ...styles.container}}><ScrollView style={styles.factList} horizontal={true}>
+            <View style={{ ...this.props.style, ...styles.container }}>
+                <ScrollView style={styles.factList} horizontal={true}>
+                    {/* DURATION ELEMENT */}
+                    {this.createFactElement(
+                        'time',
+                        this.state.tour.duration > 1
+                            ? `${this.state.tour.duration} Days`
+                            : `1 Day`
+                    )}
 
-                {/* DURATION ELEMENT */}
-                {this.createFactElement('time')}
-                
-                {/* LOCATION ELEMENT */}
-                {this.createFactElement('airplane')}
-                
-                {/* NEXT DATE ELEMENT */}
-                {this.createFactElement('calendar')}
-                
-                {/* DIFFICULTY ELEMENT */}
-                {this.createFactElement('pulse')}
-                
-                {/* PARTICIPANTS ELEMENT */}
-                {this.createFactElement('people')}
-                
-                {/* RATING ELEMENT */}
-                {this.createFactElement('star')}
-                
-            </ScrollView></View>
+                    {/* LOCATION ELEMENT */}
+                    {this.createFactElement(
+                        'airplane',
+                        this.state.tour.startLocation.description
+                    )}
+
+                    {/* NEXT DATE ELEMENT */}
+                    {(() => {
+                        this.nextDate = new Date(this.state.tour.startDates[0]);
+                    })()}
+                    {this.createFactElement(
+                        'calendar',
+                        `${this.nextDate.getMonth() +
+                            1}/${this.nextDate.getDate()}/${this.nextDate.getFullYear()}`
+                    )}
+
+                    {/* DIFFICULTY ELEMENT */}
+                    {this.createFactElement(
+                        'pulse',
+                        this.state.tour.difficulty.toUpperCase()
+                    )}
+
+                    {/* PARTICIPANTS ELEMENT */}
+                    {this.createFactElement(
+                        'people',
+                        `${this.state.tour.maxGroupSize} People`
+                    )}
+
+                    {/* RATING ELEMENT */}
+                    {this.createFactElement(
+                        'star',
+                        `${this.state.tour.ratingsAverage}/5.0 (${this.state.tour.ratingsQuantity})`
+                    )}
+                </ScrollView>
+            </View>
         );
     }
 }
@@ -80,7 +104,7 @@ const localInfo = {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: `${Colors.richBlack}11`,
+        backgroundColor: `${Colors.richBlack}06`,
     },
     item: {
         padding: 10,
