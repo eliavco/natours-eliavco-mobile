@@ -26,10 +26,18 @@
     "ios": {
       "icon": "./assets/images/icon.png",
       "supportsTablet": true,
-      "bundleIdentifier": "com.eliavco.natoursmob"
+      "bundleIdentifier": "com.eliavco.natoursmob",
+      "config": {
+        "googleMapsApiKey": "AIzaSyAP-Ng9sr-9bDnsJNDWME_fX5z5kmcKsqg"
+      }
     },
     "android": {
-      "package": "com.eliavco.natoursmob"
+      "package": "com.eliavco.natoursmob",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyAP-Ng9sr-9bDnsJNDWME_fX5z5kmcKsqg"
+        }
+      }
     },
     "description": "This app helps manage your tours from the Natours Company: https://natours-eliav.herokuapp.com",
     "githubUrl": "https://github.com/eliavco/natours-eliavco-mobile.git"
