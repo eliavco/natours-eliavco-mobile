@@ -1,7 +1,7 @@
 import * as WebBrowser from 'expo-web-browser';
 import React, { Component } from 'react';
 import { Image, TouchableOpacity, StyleSheet, ScrollView, View, Dimensions } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import Colors from '../../constants/Colors';
@@ -17,22 +17,27 @@ export class TourMap extends Component {
                    tour: props.tour,
                };
                this.mapRef = null;
+               this.mapStyle = Info.mapStyle;
            }
 
-           componentDidMount() {
+           fitCoordinates() {
                this.mapRef.fitToSuppliedMarkers(
                    [
                        this.state.tour.startLocation,
                        ...this.state.tour.locations,
                    ].map((marker, i) => {
-                       const latlng = {
-                           longitude: marker.coordinates[0],
-                           latitude: marker.coordinates[1],
-                       };
-                       return latlng;
+                       return `${i}`;
                    }),
-                   false // not animated //TODO: fix
+                   { animated: false, edgePadding: { top: 100, left: 100, right: 100, bottom: 100 } }
                );
+           }
+
+           openLocation(loc = {longitude: 0, latitude: 0}) {
+                return () => {
+                    WebBrowser.openBrowserAsync(
+                        `https://www.google.com/maps/place/${loc.latitude},${loc.longitude}`
+                    );
+                }
            }
 
            // RENDER
@@ -40,7 +45,9 @@ export class TourMap extends Component {
                return (
                    <View style={{ ...this.props.style, ...styles.container }}>
                        <MapView
+                           provider={PROVIDER_GOOGLE}
                            style={styles.mapStyle}
+                           customMapStyle={this.mapStyle}
                            initialRegion={{
                                longitude: this.state.tour.startLocation
                                    .coordinates[0],
@@ -52,6 +59,7 @@ export class TourMap extends Component {
                            ref={ref => {
                                this.mapRef = ref;
                            }}
+                           onMapReady={this.fitCoordinates.bind(this)}
                        >
                            {[
                                this.state.tour.startLocation,
@@ -64,8 +72,18 @@ export class TourMap extends Component {
                                return (
                                    <Marker
                                        coordinate={latlng}
-                                       title={marker.description}
+                                       title={
+                                           marker.day
+                                               ? `Day ${marker.day}`
+                                               : 'Day 0'
+                                       }
+                                       description={marker.description}
                                        key={i}
+                                       identifier={`${i}`}
+                                       onCalloutPress={this.openLocation(
+                                           latlng
+                                       )}
+                                       pinColor={Colors.red}
                                    />
                                );
                            })}

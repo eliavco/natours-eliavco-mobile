@@ -6,6 +6,7 @@ export default {
     secondColor,
     tabIconDefault: '#ccc',
     tabIconSelected: tintColor,
+    red: '#E63946dd',
     tabBar: '#fefefe',
     errorBackground: 'red',
     errorText: '#fff',
@@ -16,11 +17,5 @@ export default {
     white: '#ffffff', // #fff
     richBlack: '#011627',
     gray: 'rgba(96,100,109, 1)',
-    pallete: [
-        '#05668d',
-        '#028090',
-        '#00a896',
-        '#02C39A',
-        '#F0F3BD',
-    ],
+    pallete: ['#05668d', '#028090', '#00a896', '#02C39A', '#F0F3BD'],
 };

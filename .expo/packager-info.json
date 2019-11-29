@@ -1,10 +1,8 @@
 {
+  "expoServerPort": 19000,
+  "packagerPort": 19003,
+  "packagerPid": 16272,
   "expoServerNgrokUrl": "https://qe-bjz.eliav-co.natours-elco.exp.direct",
   "packagerNgrokUrl": "https://packager.qe-bjz.eliav-co.natours-elco.exp.direct",
-  "ngrokPid": 11660,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 8880,
-  "devToolsPort": 19002,
-  "webpackServerPort": null
+  "ngrokPid": 13172
 }
